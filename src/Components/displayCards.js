@@ -1,5 +1,5 @@
 
-let DisplayCards = () =>
+const DisplayCards = () =>
 {
     return (
         <div>
