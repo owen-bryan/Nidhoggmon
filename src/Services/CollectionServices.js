@@ -16,3 +16,5 @@ const addCard = (newObj) =>
     request.catch (error => console.log('error', error))
     return request.then (response => response.data)
 }
+
+export default {getCards, addCard}
