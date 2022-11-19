@@ -1,6 +1,8 @@
 import { useState } from "react"
+import {addCard, getCards} from "../Services/CollectionServices"
 
-const AddCard = () => {
+
+const NewCard = ({setCards}) => {
     const [getCard, setCard] = useState("")
     
     const inputHandler = (event) =>
@@ -11,6 +13,10 @@ const AddCard = () => {
     const submitHandler = (event) =>
     {
         console.log('getCard()', getCard)
+        
+        addCard ({cardID: getCard, ownerID: 0})
+        
+        setCard (getCards())
     }
 
     return (
@@ -21,4 +27,4 @@ const AddCard = () => {
     )
 }
 
-export default AddCard
+export default NewCard

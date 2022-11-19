@@ -1,11 +1,15 @@
-import AddCard from "./Components/addCard";
+import NewCard from "./Components/newCard";
 import DisplayCards from "./Components/displayCards";
+import { useState } from "react";
 
 function App() {
+
+  const [cards, setCards] = useState({})
+
   return (
     <div className="App">
-      <AddCard />
-      <DisplayCards />
+      <NewCard setCards={setCards}/>
+      <DisplayCards cards={cards} />
     </div>
   );
 }
