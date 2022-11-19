@@ -1,5 +1,5 @@
 import { useState } from "react"
-import {addCard, getCards} from "../Services/CollectionServices"
+import CollectionServices from "../Services/CollectionServices"
 
 
 const NewCard = ({setCards}) => {
@@ -14,9 +14,9 @@ const NewCard = ({setCards}) => {
     {
         console.log('getCard()', getCard)
         
-        addCard ({cardID: getCard, ownerID: 0})
+        CollectionServices.addCard ({cardID: getCard, ownerID: 0})
         
-        setCard (getCards())
+        setCard (CollectionServices.getCards().then(data => data))
     }
 
     return (

@@ -17,4 +17,6 @@ const addCard = (newObj) =>
     return request.then (response => response.data)
 }
 
-export default {getCards, addCard}
+const out = {getCards, addCard}
+
+export default out

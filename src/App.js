@@ -4,12 +4,13 @@ import { useState } from "react";
 
 function App() {
 
-  const [cards, setCards] = useState({})
+  const [cards, setCards] = useState([])
 
   return (
     <div className="App">
       <NewCard setCards={setCards}/>
-      <DisplayCards cards={cards} />
+      {cards.length > 0 ? <DisplayCards cards={cards} /> : <div />}
+        
     </div>
   );
 }
