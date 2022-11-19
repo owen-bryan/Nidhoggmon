@@ -1,19 +1,54 @@
 {
-  "posts": [
+  "Cards": [
     {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
-    }
-  ],
-  "comments": [
+      "id": 0,
+      "cardID": "BT5-011",
+      "ownerID": 0
+    },
     {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "cardID": "bt5-012",
+      "ownerID": 0,
+      "id": 1
+    },
+    {
+      "cardID": "bt5-012",
+      "ownerID": 0,
+      "id": 2
+    },
+    {
+      "cardID": "bt5",
+      "ownerID": 0,
+      "id": 3
+    },
+    {
+      "cardID": {},
+      "ownerID": 0,
+      "id": 4
+    },
+    {
+      "cardID": "bt4",
+      "ownerID": 0,
+      "id": 5
+    },
+    {
+      "cardID": {},
+      "ownerID": 0,
+      "id": 6
+    },
+    {
+      "cardID": "bt6-01",
+      "ownerID": 0,
+      "id": 7
+    },
+    {
+      "cardID": "bt6-01",
+      "ownerID": 0,
+      "id": 8
+    },
+    {
+      "cardID": "bt5",
+      "ownerID": 0,
+      "id": 9
     }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
+  ]
 }

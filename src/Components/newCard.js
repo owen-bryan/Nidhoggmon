@@ -16,7 +16,7 @@ const NewCard = ({setCards}) => {
         
         CollectionServices.addCard ({cardID: getCard, ownerID: 0})
         
-        setCard (CollectionServices.getCards().then(data => data))
+        setCards (CollectionServices.getCards().then(data => data))
     }
 
     return (
