@@ -1,17 +1,27 @@
 import NewCard from "./Components/newCard";
 import DisplayCards from "./Components/displayCards";
-import { useState } from "react";
+import CollectionService from "./Services/CollectionServices"
+import { useState, useEffect } from "react";
 
 function App() {
 
   const [cards, setCards] = useState([])
+
+  useEffect (() =>
+  {
+    CollectionService.getCards ().then (data =>
+      {
+        
+        setCards (data)
+      })
+  }, [])
 
   return (
 
     <div className="App">
       
       {console.log('cards', cards)}
-      <NewCard setCards={setCards}/>
+      <NewCard cards={cards} setCards={setCards}/>
       {cards.length > 0 ? <DisplayCards cards={cards} /> : <div />}
         
     </div>

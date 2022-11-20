@@ -1,54 +1,14 @@
 {
   "Cards": [
     {
-      "id": 0,
-      "cardID": "BT5-011",
-      "ownerID": 0
-    },
-    {
-      "cardID": "bt5-012",
+      "cardID": "BT5-012",
       "ownerID": 0,
       "id": 1
     },
     {
-      "cardID": "bt5-012",
+      "cardID": "BT7-003",
       "ownerID": 0,
       "id": 2
-    },
-    {
-      "cardID": "bt5",
-      "ownerID": 0,
-      "id": 3
-    },
-    {
-      "cardID": {},
-      "ownerID": 0,
-      "id": 4
-    },
-    {
-      "cardID": "bt4",
-      "ownerID": 0,
-      "id": 5
-    },
-    {
-      "cardID": {},
-      "ownerID": 0,
-      "id": 6
-    },
-    {
-      "cardID": "bt6-01",
-      "ownerID": 0,
-      "id": 7
-    },
-    {
-      "cardID": "bt6-01",
-      "ownerID": 0,
-      "id": 8
-    },
-    {
-      "cardID": "bt5",
-      "ownerID": 0,
-      "id": 9
     }
   ]
 }

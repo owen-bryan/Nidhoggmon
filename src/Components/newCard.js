@@ -2,7 +2,7 @@ import { useState } from "react"
 import CollectionServices from "../Services/CollectionServices"
 
 
-const NewCard = ({setCards}) => {
+const NewCard = ({cards, setCards}) => {
     const [getCard, setCard] = useState("")
     
     const inputHandler = (event) =>
@@ -14,9 +14,11 @@ const NewCard = ({setCards}) => {
     {
         console.log('getCard()', getCard)
         
-        CollectionServices.addCard ({cardID: getCard, ownerID: 0})
+        CollectionServices.addCard ({cardID: getCard, ownerID: 0}).then (data => {
+            console.log('data', data)
+            setCards ([...cards,data])
+        })
         
-        setCards (CollectionServices.getCards().then(data => data))
     }
 
     return (
