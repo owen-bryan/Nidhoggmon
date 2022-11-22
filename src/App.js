@@ -11,7 +11,6 @@ function App() {
   {
     CollectionService.getCards ().then (data =>
       {
-        
         setCards (data)
       })
   }, [])
@@ -19,11 +18,9 @@ function App() {
   return (
 
     <div className="App">
-      
-      {console.log('cards', cards)}
+      {/* {console.log('cards', cards)} */}
       <NewCard cards={cards} setCards={setCards}/>
-      {cards.length > 0 ? <DisplayCards cards={cards} /> : <div />}
-        
+      {cards.length > 0 ? <DisplayCards cards={cards} /> : null}
     </div>
   );
 }
