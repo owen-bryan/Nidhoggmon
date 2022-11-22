@@ -11,7 +11,6 @@ const DisplayCards = ({cards}) =>
     {
       
         let c = []
-        console.log('use effect called')
         cards.forEach (card => {
             // console.log('card', card)
             c.push (DigimonIOServices.getCardByNumber(card.cardID))
@@ -19,15 +18,19 @@ const DisplayCards = ({cards}) =>
 
 
         Promise.all(c).then (data => {
-            data.map (card => {
-                console.log('displayCards', displayCards)
-                setDisplayCards ([...displayCards, {name: card[0].name, cardnum: card[0].cardnumber}])
+            let d = []
+            data.forEach (card => {
+                
+               d = [...d, {name: card[0].name, cardnum: card[0].cardnumber}]
             })
-        })
 
+            // console.log('data', data)
+            setDisplayCards (d)
+        })
+        
     }, [cards])
 
-    console.log('displayCards.length', displayCards.length)
+    // console.log('displayCards.length', displayCards.length)
     if (displayCards.length === 0)
         return null
 
@@ -38,7 +41,7 @@ const DisplayCards = ({cards}) =>
             <ul>
                 {displayCards.map (c => 
                     {
-                        return <li >{c.name}</li>
+                        return <li key={c.cardnum}>{c.name}</li>
                     })}
             </ul>
         </div>
