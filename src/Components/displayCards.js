@@ -1,32 +1,44 @@
 
 import { useEffect, useState } from "react"
 import DigimonIOServices from "../Services/DigimonIOServices"
+import RemoveCard from "./RemoveCard"
 
-
-const DisplayCards = ({cards}) =>
+const DisplayCards = ({cards, setCards}) =>
 {
     const [displayCards, setDisplayCards] = useState ([])
 
     useEffect (() =>
     {
       
-        let c = []
+        let promises = []
+        let timeouts = []
         cards.forEach (card => {
             // console.log('card', card)
-            c.push (DigimonIOServices.getCardByNumber(card.cardID))
+            promises.push (DigimonIOServices.getCardByNumber(card.cardID))
         })
 
+        for (let i = 0; i < cards.length; i++)
+        {
+            timeouts[i] =setTimeout (() => {
+                promises.push (DigimonIOServices.getCardByNumber(cards[i].cardID))
+            }, 1500 * i)
+        }
 
-        Promise.all(c).then (data => {
-            let d = []
+
+        Promise.all(promises).then (data => {
+            let processedData = []
             data.forEach (card => {
                 
-               d = [...d, {name: card[0].name, cardnum: card[0].cardnumber}]
+               processedData = [...processedData, {name: card[0].name, cardnum: card[0].cardnumber}]
             })
 
             // console.log('data', data)
-            setDisplayCards (d)
+            setDisplayCards (processedData)
         })
+
+        return (
+            timeouts.forEach (timeout => clearTimeout (timeout))
+        )
         
     }, [cards])
 
@@ -36,12 +48,10 @@ const DisplayCards = ({cards}) =>
 
     return (
         <div>
-            {/* {console.log('displayCards', displayCards)} */}
-            {/* {console.log('displayCards.length', displayCards.length)} */}
             <ul>
                 {displayCards.map (c => 
                     {
-                        return <li key={c.cardnum}>{c.name}</li>
+                        return <li key={c.cardnum}>{c.name}<RemoveCard cards={cards} setCards={setCards} cardnum={c.cardnum} /></li>
                     })}
             </ul>
         </div>
