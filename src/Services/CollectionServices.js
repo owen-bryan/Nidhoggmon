@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const BASE_URL = 'http://localhost:3001/Cards'
+const BASE_URL = process.env.REACT_APP_BASE_URL || 'http://localhost:3001/Cards'
 
 const getCards = () =>
 {
@@ -18,6 +18,6 @@ const addCard = (newObj) =>
     return request.then (response => response.data)
 }
 
-const out = {getCards, addCard}
+const CollectionServices = {getCards, addCard}
 
-export default out
+export default CollectionServices
