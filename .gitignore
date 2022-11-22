@@ -25,4 +25,4 @@ yarn-error.log*
 
 # dev tools
 /REST
-db*.json
+db.json

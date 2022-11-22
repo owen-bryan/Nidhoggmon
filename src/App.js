@@ -20,7 +20,7 @@ function App() {
     <div className="App">
       {/* {console.log('cards', cards)} */}
       <NewCard cards={cards} setCards={setCards}/>
-      {cards.length > 0 ? <DisplayCards cards={cards} /> : null}
+      {cards.length > 0 ? <DisplayCards cards={cards} setCards={setCards}/> : null}
     </div>
   );
 }

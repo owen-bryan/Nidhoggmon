@@ -10,14 +10,29 @@ const getCards = () =>
     return request.then (response => response.data)
 }
 
+const getCard = (id) =>
+{
+    const request = axios.get(`${BASE_URL}/${id}`)
+    request.catch (error => console.log('error', error))
+
+    return request.then (response => response)
+}
+
 const addCard = (newObj) =>
 {
-    console.log('BASE_URL', BASE_URL)
     const request = axios.post (`${BASE_URL}`, newObj)
     request.catch (error => console.log('error', error))
     return request.then (response => response.data)
 }
 
-const CollectionServices = {getCards, addCard}
+const deleteCard = (id) =>
+{
+    const request = axios.delete (`${BASE_URL}/${id}`)
+    request.catch (error => console.log('error', error))
+
+    return request.then (response => response)
+}
+
+const CollectionServices = {getCards, getCard, addCard, deleteCard}
 
 export default CollectionServices
