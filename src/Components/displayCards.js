@@ -19,7 +19,7 @@ const DisplayCards = ({cards, setCards}) =>
 
         for (let i = 0; i < cards.length; i++)
         {
-            timeouts[i] =setTimeout (() => {
+            timeouts[i] = setTimeout (() => {
                 promises.push (DigimonIOServices.getCardByNumber(cards[i].cardID))
             }, 1500 * i)
         }
@@ -51,7 +51,7 @@ const DisplayCards = ({cards, setCards}) =>
             <ul>
                 {displayCards.map (c => 
                     {
-                        return <li key={c.cardnum}>{c.name}<RemoveCard cards={cards} setCards={setCards} cardnum={c.cardnum} /></li>
+                        return <li key={c.id}>{c.name}<RemoveCard cards={cards} setCards={setCards} cardnum={c.cardnum} /></li>
                     })}
             </ul>
         </div>

@@ -5,7 +5,7 @@ const RemoveCard = ({cards, setCards, cardnum}) =>
 
     const RemoveHandler = (event) =>
     {
-        console.log('cards.filter(card=>card.cardnum!==cardnum', cards.filter(card=>card.cardID!==cardnum))
+        // console.log('cards.filter(card=>card.cardnum!==cardnum', cards.filter(card=>card.cardID!==cardnum))
         setCards (cards.filter(card => card.cardID !== cardnum))
 
         CollectionServices.deleteCard (cardnum).then (data => {
