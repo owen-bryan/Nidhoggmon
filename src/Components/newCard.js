@@ -3,27 +3,35 @@ import CollectionServices from "../Services/CollectionServices"
 
 
 const NewCard = ({cards, setCards}) => {
-    const [getCard, setCard] = useState("")
-    
-    const inputHandler = (event) =>
+    const [cardName, setCardName] = useState("")
+    const [quantity, setQuantity] = useState(1)
+
+
+    const nameHandler = (event) =>
     {
-        setCard (event.target.value)
+        setCardName (event.target.value)
     }
 
     const submitHandler = (event) =>
     {
-        console.log('getCard()', getCard)
+        // console.log('getCard()', cardName)
         
-        CollectionServices.addCard ({cardID: getCard, ownerID: 0}).then (data => {
+        CollectionServices.addCard ({cardID: cardName, ownerID: 0, quantity: quantity}).then (data => {
             console.log('data', data)
             setCards ([...cards,data])
         })
         
     }
 
+    const quantityHandler = (event) =>
+    {
+        setQuantity (event.target.value)
+    }
+
     return (
         <div>
-            <input type="text" onChange={inputHandler}/>
+            <input type="text" onChange={nameHandler}/>
+            <input type="number" onChange={quantityHandler} min="1"/>
             <button onClick={submitHandler} type="submit">Submit</button>
         </div>
     )

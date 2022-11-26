@@ -9,13 +9,14 @@ const DisplayCards = ({cards, setCards}) =>
 
     useEffect (() =>
     {
-      
+      console.log('use effect fired')
         let promises = []
         let timeouts = []
         cards.forEach (card => {
-            // console.log('card', card)
+            console.log('card', card)
             promises.push (DigimonIOServices.getCardByNumber(card.cardID))
         })
+        // console.log("first loop")
 
         for (let i = 0; i < cards.length; i++)
         {
@@ -23,17 +24,28 @@ const DisplayCards = ({cards, setCards}) =>
                 promises.push (DigimonIOServices.getCardByNumber(cards[i].cardID))
             }, 1500 * i)
         }
-
+        // console.log ("second loop")
 
         Promise.all(promises).then (data => {
+            console.log('promises', promises)
             let processedData = []
             data.forEach (card => {
                 
                processedData = [...processedData, {name: card[0].name, cardnum: card[0].cardnumber}]
             })
 
-            // console.log('data', data)
-            setDisplayCards (processedData)
+
+            let results = [];
+
+            // console.log('processedData', processedData)
+
+            for (let i = 0; i < processedData.length; i++)
+            {
+                results.push({card: cards[i], apiData: processedData[i]})
+            }
+
+            // console.log('results', results)
+            setDisplayCards (results)
         })
 
         return (
@@ -42,7 +54,7 @@ const DisplayCards = ({cards, setCards}) =>
         
     }, [cards])
 
-    // console.log('displayCards.length', displayCards.length)
+    console.log('displayCards.length', displayCards.length)
     if (displayCards.length === 0)
         return null
 
@@ -51,7 +63,7 @@ const DisplayCards = ({cards, setCards}) =>
             <ul>
                 {displayCards.map (c => 
                     {
-                        return <li key={c.id}>{c.name}<RemoveCard cards={cards} setCards={setCards} cardnum={c.cardnum} /></li>
+                        return <li key={c.apiData.cardnum}>{c.card.quantity} x {c.apiData.name}<RemoveCard cards={cards} setCards={setCards} cardnum={c.card.id} /></li>
                     })}
             </ul>
         </div>
