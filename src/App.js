@@ -1,5 +1,5 @@
-import NewCard from "./Components/newCard";
-import DisplayCards from "./Components/displayCards";
+import NewCard from "./Components/NewCard";
+import DisplayCards from "./Components/DisplayCards";
 import CollectionService from "./Services/CollectionServices"
 import { useState, useEffect } from "react";
 

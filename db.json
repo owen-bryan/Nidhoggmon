@@ -1,12 +1,6 @@
 {
   "Cards": [
     {
-      "cardID": "BT4-113",
-      "ownerID": 0,
-      "quantity": 1,
-      "id": 1
-    },
-    {
       "cardID": "BT5-086",
       "ownerID": 0,
       "quantity": 1,
@@ -17,6 +11,12 @@
       "ownerID": 0,
       "quantity": "3",
       "id": 3
+    },
+    {
+      "cardID": "BT4-113",
+      "ownerID": 0,
+      "quantity": "4",
+      "id": 4
     }
   ]
 }

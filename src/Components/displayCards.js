@@ -2,18 +2,18 @@
 import { useEffect, useState } from "react"
 import DigimonIOServices from "../Services/DigimonIOServices"
 import RemoveCard from "./RemoveCard"
-
+import CardTile from "./CardTile"
 const DisplayCards = ({cards, setCards}) =>
 {
     const [displayCards, setDisplayCards] = useState ([])
 
     useEffect (() =>
     {
-      console.log('use effect fired')
+    //   console.log('use effect fired')
         let promises = []
         let timeouts = []
         cards.forEach (card => {
-            console.log('card', card)
+            // console.log('card', card)
             promises.push (DigimonIOServices.getCardByNumber(card.cardID))
         })
         // console.log("first loop")
@@ -27,7 +27,7 @@ const DisplayCards = ({cards, setCards}) =>
         // console.log ("second loop")
 
         Promise.all(promises).then (data => {
-            console.log('promises', promises)
+            // console.log('promises', promises)
             let processedData = []
             data.forEach (card => {
                 
@@ -54,18 +54,26 @@ const DisplayCards = ({cards, setCards}) =>
         
     }, [cards])
 
-    console.log('displayCards.length', displayCards.length)
+    // console.log('displayCards.length', displayCards.length)
     if (displayCards.length === 0)
         return null
 
+    // return (
+    //     <div>
+    //         <ul>
+    //             {displayCards.map (c => 
+    //                 {
+    //                     return <li key={c.apiData.cardnum}>{c.card.quantity} x {c.apiData.name}<RemoveCard cards={cards} setCards={setCards} cardnum={c.card.id} /></li>
+    //                 })}
+    //         </ul>
+    //     </div>
+    // )
+    
     return (
         <div>
-            <ul>
-                {displayCards.map (c => 
-                    {
-                        return <li key={c.apiData.cardnum}>{c.card.quantity} x {c.apiData.name}<RemoveCard cards={cards} setCards={setCards} cardnum={c.card.id} /></li>
-                    })}
-            </ul>
+            {displayCards.map (c => {
+                return <CardTile key={c.card.id} card={c}/>
+            })}
         </div>
     )
 }

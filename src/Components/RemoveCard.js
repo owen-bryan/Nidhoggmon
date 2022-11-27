@@ -6,10 +6,10 @@ const RemoveCard = ({cards, setCards, cardnum}) =>
     const RemoveHandler = (event) =>
     {
         // console.log('cards.filter(card=>card.cardnum!==cardnum', cards.filter(card=>card.cardID!==cardnum))
-        setCards (cards.filter(card => card.id !== cardnum))
 
         CollectionServices.deleteCard (cardnum).then (data => {
-            console.log('data', data)
+            // console.log('data', data)
+            setCards (cards.filter(card => card.id !== cardnum))
         })
     }
 
