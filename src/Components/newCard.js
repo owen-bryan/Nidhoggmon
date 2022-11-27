@@ -23,7 +23,7 @@ const NewCard = ({cards, setCards}) => {
         })
         
     }
-
+ 
     const quantityHandler = (event) =>
     {
         let changedCard = {...card}
