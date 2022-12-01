@@ -2,7 +2,7 @@
 const CardTile = ({card}) =>
 {
     return (
-        <p>{card.apiData.name}</p>
+        <p>{card.card.quantity} x {card.apiData.name}</p>
     )
 }
 

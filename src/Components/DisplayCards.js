@@ -1,8 +1,10 @@
 
 import { useEffect, useState } from "react"
 import DigimonIOServices from "../Services/DigimonIOServices"
-import RemoveCard from "./RemoveCard"
-import CardTile from "./CardTile"
+// import RemoveCard from "./RemoveCard"
+// import CardTile from "./CardTile"
+import CollectionTable from "./CollectionTable"
+
 const DisplayCards = ({cards, setCards}) =>
 {
     const [displayCards, setDisplayCards] = useState ([])
@@ -69,12 +71,17 @@ const DisplayCards = ({cards, setCards}) =>
     //     </div>
     // )
     
+    // return (
+    //     <>
+    //         {displayCards.map (c => {
+    //             return <><CardTile key={c.card.id} card={c}/> <RemoveCard cards={cards} setCards={setCards} id={c.card.id}/></>
+    //         })}
+    //     </>
+        
+    // )
+
     return (
-        <div>
-            {displayCards.map (c => {
-                return <CardTile key={c.card.id} card={c}/>
-            })}
-        </div>
+        <CollectionTable data={displayCards} />
     )
 }
 

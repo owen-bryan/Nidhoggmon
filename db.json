@@ -7,16 +7,10 @@
       "id": 2
     },
     {
-      "cardID": "BT5-001",
-      "ownerID": 0,
-      "quantity": "3",
-      "id": 3
-    },
-    {
       "cardID": "BT4-113",
       "ownerID": 0,
       "quantity": "4",
-      "id": 4
+      "id": 3
     }
   ]
 }
