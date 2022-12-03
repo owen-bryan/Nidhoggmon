@@ -2,6 +2,7 @@ import NewCard from "./Components/NewCard";
 import DisplayCards from "./Components/DisplayCards";
 import CollectionService from "./Services/CollectionServices"
 import { useState, useEffect } from "react";
+import NewCardAutoComplete from "./Components/NewCardAutoComplete";
 // import DigimonIOServices from "./Services/DigimonIOServices";
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
     <div className="App">
       {/* {console.log('cards', cards)} */}
       <NewCard cards={cards} setCards={setCards}/>
+      <NewCardAutoComplete cards={setCards} />
       {/* {cards.length > 0 ? <DisplayCards cards={cards} setCards={setCards}/> : null} */}
       {cards.length > 0 ? <DisplayCards cards={cards} setCards={setCards}/> : null}
       {/* <ul>
