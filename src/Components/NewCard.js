@@ -1,42 +1,48 @@
+import { TextField } from "@mui/material"
 import { useState } from "react"
+
 import CollectionServices from "../Services/CollectionServices"
+
+import NewCardAutoComplete from "./NewCardAutoComplete"
 
 
 const NewCard = ({cards, setCards}) => {
-    const [card, setCard] = useState({})
+    
+    const [newCard, setNewCard] = useState ({})
+    
 
-
-    const nameHandler = (event) =>
+    const handleChange = (cardData) =>
     {
-        let changedCard = {...card}
-        changedCard.name = event.target.value
-        setCard (changedCard)
+        let c = {...newCard}
+        c.cardnumber = cardData.cardnumber
+        setNewCard (c)
+        // console.log ("Call from handleChange")
+        // console.log('cardData', cardData)
     }
 
-    const submitHandler = (event) =>
+    const handleQuantity = (event) =>
     {
-        // console.log('getCard()', cardName)
-        
-        CollectionServices.addCard ({cardID: card.name, ownerID: 0, quantity: card.qunatity}).then (data => {
-            // console.log('data', data)
-            setCards ([...cards,data])
-        })
-        
+        let c = {...newCard}
+        c.quantity = event.target.value
+        // console.log('event.target.value', event.target.value)
+        setNewCard (c)
     }
- 
-    const quantityHandler = (event) =>
+
+    const handleSubmit = (event) =>
     {
-        let changedCard = {...card}
-        changedCard.qunatity = event.target.value
-        setCard (changedCard)
+        CollectionServices.addCard ({cardID: newCard.cardnumber, ownerID: 0, quantity: newCard.quantity}).then (data =>
+            {
+                setCards ([...cards, data])
+            })
     }
 
     return (
-        <div>
-            <input type="text" onChange={nameHandler}/>
-            <input type="number" onChange={quantityHandler} min="1"/>
-            <button onClick={submitHandler} type="submit">Submit</button>
-        </div>
+        <>
+            <NewCardAutoComplete handleChange={handleChange} />
+            {/* <input type="number" onChange={handleQuantity} min="1"/> */}
+            <TextField inputProps={{inputMode: 'numeric', pattern: '[0-9]*'}} onChange={handleQuantity}/>
+            <button onClick={handleSubmit} type="submit">Submit</button>
+        </>
     )
 }
 

@@ -1,6 +1,7 @@
 
 import { useEffect, useState } from "react"
 import DigimonIOServices from "../Services/DigimonIOServices"
+import CardTile from "./CardTile"
 // import RemoveCard from "./RemoveCard"
 // import CardTile from "./CardTile"
 import CollectionTable from "./CollectionTable"
@@ -24,7 +25,7 @@ const DisplayCards = ({cards, setCards}) =>
         {
             timeouts[i] = setTimeout (() => {
                 promises.push (DigimonIOServices.getCardByNumber(cards[i].cardID))
-            }, 1500 * i)
+            }, 1500 * (i+1))
         }
         // console.log ("second loop")
 
@@ -33,7 +34,8 @@ const DisplayCards = ({cards, setCards}) =>
             let processedData = []
             data.forEach (card => {
                 
-               processedData = [...processedData, {name: card[0].name, cardnum: card[0].cardnumber}]
+            //    processedData = [...processedData, {name: card[0].name, cardnum: card[0].cardnumber}]
+               processedData = [...processedData, card]
             })
 
 
@@ -82,6 +84,13 @@ const DisplayCards = ({cards, setCards}) =>
 
     return (
         <CollectionTable data={displayCards} />
+        // <>
+        //     {displayCards.map (card =>
+        //     { 
+        //         // console.log('card', card)
+        //         return <CardTile key={card.apiData.cardnumber} card={card} />
+        //     })}
+        // </>
     )
 }
 

@@ -6,7 +6,8 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 
-const NewCardAutoComplete = ({cards}) =>
+
+const NewCardAutoComplete = ({handleChange}) =>
 {
     const [apiData, setApiData] = useState ([])
 
@@ -14,9 +15,10 @@ const NewCardAutoComplete = ({cards}) =>
     {
         DigimonIOServices.getAll().then (data => {
             setApiData (data)
-            console.log('data', data)
+            // console.log('data', data)
         })
     }, [])
+
 
     if (apiData.length <= 0)
         return null
@@ -26,7 +28,10 @@ const NewCardAutoComplete = ({cards}) =>
             id="new-card-autocomplete"
             options={apiData}
             autoComplete
-            onChange={(event, value) => console.log('value', value)}
+            onChange={(event, value) => {
+         
+                handleChange (value)
+            }}
             getOptionLabel={(option) => option.name}
             renderOption={(props, option) => (
                 <Box component="li" {...props} key={option.cardnumber}>
@@ -39,7 +44,6 @@ const NewCardAutoComplete = ({cards}) =>
                     label="Search for a card"
                     inputProps={{
                         ...params.inputProps,
-                        autoComplete: 'new-password',
                     }}
                 />
             )}

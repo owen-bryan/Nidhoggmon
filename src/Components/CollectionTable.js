@@ -10,7 +10,7 @@ const CollectionTable = ({data}) =>
 {
     return (
         <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 650}} aria-label="Your Collection">
+            <Table sx={{ minWidth: 350}} aria-label="Your Collection">
                 <TableHead>
                     <TableRow>
                         <TableCell>Name</TableCell>
@@ -21,13 +21,13 @@ const CollectionTable = ({data}) =>
                 <TableBody>
                     {data.map (row => 
                         <TableRow
-                            key={row.apiData.cardnum}
+                            key={row.apiData.cardnumber}
                             sx={{ '&:last-child td, &:last-child th': {border:0}}}
                         >
                             <TableCell component="th" scope='row'>
-                                {row.apiData.name}
+                                {row.apiData.cardname}
                             </TableCell>
-                            <TableCell align='right'>{row.apiData.cardnum}</TableCell>
+                            <TableCell align='right'>{row.apiData.cardnumber}</TableCell>
                             <TableCell align='right'>{row.card.quantity}</TableCell>
                         </TableRow>
                     
