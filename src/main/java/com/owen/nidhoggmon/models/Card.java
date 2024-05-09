@@ -1,7 +1,11 @@
 package com.owen.nidhoggmon.models;
 
-public class Card {
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@Document("Card")
+public class Card {
+    @Id
     private String card_id;
     private String name;
     private int qty;

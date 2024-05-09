@@ -2,20 +2,38 @@ package com.owen.nidhoggmon.models;
 
 import java.util.List;
 
+// import java.util.List;
+
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document("DeckLists")
 public class Deck {
 
     @Id
-    private String id;
+    private ObjectId id;
+
     private String name;
+    @DBRef
     private List<Card> main_deck;
+    @DBRef
     private List<Card> egg_deck;
     private int count;
 
-    public Deck(String id, String name, List<Card> main_deck, List<Card> egg_deck, int count) {
+    public Deck () {}
+
+    
+    public Deck(String name, List<Card> main_deck, List<Card> egg_deck, int count) {
+        this.id = null;
+        this.name = name;
+        this.main_deck = main_deck;
+        this.egg_deck = egg_deck;
+        this.count = count;
+    }
+
+    public Deck(ObjectId id, String name, List<Card> main_deck, List<Card> egg_deck, int count) {
         this.id = id;
         this.name = name;
         this.main_deck = main_deck;
@@ -69,11 +87,11 @@ public class Deck {
         return true;
     }
 
-    public String getId() {
+    public ObjectId getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(ObjectId id) {
         this.id = id;
     }
 
