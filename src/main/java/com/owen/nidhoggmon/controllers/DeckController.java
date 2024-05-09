@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,20 +21,18 @@ import com.owen.nidhoggmon.respositories.DeckListRepository;
 public class DeckController {
 
     private static Logger logger = LoggerFactory.getLogger(DeckController.class);
-    
+
     @Autowired
     private DeckListRepository repository;
-    
 
-    @GetMapping({"/deck", "/deck/"})
+    @GetMapping({ "/deck", "/deck/" })
     @ResponseBody
-    public Deck getAll()
-    {
+    public Deck getAll() {
         logger.info("Getting all decks");
         // List<Deck> decks = repository.findAll();
 
         // for (Deck deck : decks) {
-        //     logger.info(deck.toString());
+        // logger.info(deck.toString());
         // }
 
         Deck deck = repository.findById("663d1e060076210bd39bedd2").get();
@@ -64,10 +61,9 @@ public class DeckController {
         logger.info(String.format("Removing Card ID = %s from Deck ID = %x", cardId, id));
     }
 
-    @PostMapping ({"/deck","/deck/"})
+    @PostMapping({ "/deck", "/deck/" })
     @ResponseBody
-    public boolean newDeck ()
-    {
+    public boolean newDeck() {
         List<Card> main_deck = new ArrayList<>();
         main_deck.add(new Card("BT09-008", "Agumon (X Antibody)", 4));
         List<Card> egg_deck = new ArrayList<>();
