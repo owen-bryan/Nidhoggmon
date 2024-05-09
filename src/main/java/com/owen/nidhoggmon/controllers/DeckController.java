@@ -21,6 +21,7 @@ public class DeckController {
     
     @Autowired
     private DeckListRepository repository;
+    
 
     @GetMapping("/deck")
     @ResponseBody
@@ -33,6 +34,10 @@ public class DeckController {
             logger.info(deck.toString());
         }
         return decks;
+
+        // return null;
+
+        // return "Hello world";
     }
 
     @GetMapping("/deck/{id}")
