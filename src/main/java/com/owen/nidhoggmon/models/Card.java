@@ -1,32 +1,40 @@
 package com.owen.nidhoggmon.models;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import java.io.Serializable;
 
-@Document("Card")
-public class Card {
-    @Id
-    private String card_id;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+public class Card implements Serializable {
+
+    private String cardId;
     private String name;
     private int qty;
 
-    public Card(String card_id, String name, int qty) {
-        this.card_id = card_id;
+    private final static Logger logger = LoggerFactory.getLogger(Card.class);
+
+    public Card() {
+        logger.info("Generating new card");
+    }
+
+    public Card(String cardId, String name, int qty) {
+        this();
+        this.cardId = cardId;
         this.name = name;
         this.qty = qty;
     }
 
     @Override
     public String toString() {
-        return "Card [card_id=" + card_id + ", name=" + name + ", qty=" + qty + "]";
+        return "Card [cardId=" + cardId + ", name=" + name + ", qty=" + qty + "]";
     }
 
-    public String getCard_id() {
-        return card_id;
+    public String getCardId() {
+        return cardId;
     }
 
-    public void setCard_id(String card_id) {
-        this.card_id = card_id;
+    public void setCardId(String cardId) {
+        this.cardId = cardId;
     }
 
     public String getName() {

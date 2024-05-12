@@ -10,38 +10,34 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.owen.nidhoggmon.models.Card;
 import com.owen.nidhoggmon.models.Deck;
-import com.owen.nidhoggmon.respositories.DeckListRepository;
+import com.owen.nidhoggmon.services.DeckListService;
 
 @RestController
-public class DeckController {
+public final class DeckController {
 
-    private static Logger logger = LoggerFactory.getLogger(DeckController.class);
+    private final static Logger logger = LoggerFactory.getLogger(DeckController.class);
+
 
     @Autowired
-    private DeckListRepository repository;
+    private DeckListService service;
 
     @GetMapping({ "/deck", "/deck/" })
     @ResponseBody
-    public Deck getAll() {
+    public List<Deck> getAll() {
         logger.info("Getting all decks");
-        // List<Deck> decks = repository.findAll();
+        List<Deck> decks = service.findAll();
 
-        // for (Deck deck : decks) {
-        // logger.info(deck.toString());
-        // }
+        for (Deck deck : decks) {
+            logger.info(deck.toString());
+        }
 
-        Deck deck = repository.findById("663d1e060076210bd39bedd2").get();
-
-        return deck;
-
-        // return null;
-
-        // return "Hello world";
+        return decks;
     }
 
     @GetMapping("/deck/{id}")
@@ -63,14 +59,14 @@ public class DeckController {
 
     @PostMapping({ "/deck", "/deck/" })
     @ResponseBody
-    public boolean newDeck() {
-        List<Card> main_deck = new ArrayList<>();
-        main_deck.add(new Card("BT09-008", "Agumon (X Antibody)", 4));
-        List<Card> egg_deck = new ArrayList<>();
-        egg_deck.add(new Card("BT9-001", "Koromon", 4));
-        Deck deck = new Deck("Greymon", main_deck, egg_deck, 0);
-
-        repository.insert(deck);
-        return false;
+    public boolean newDeck(@RequestParam("name") String name, @RequestParam("main_deck") List<Card> main_deck, @RequestParam("egg_deck") List<Card> egg_deck, @RequestParam("count") int count) {
+        
+        logger.debug(name);
+        logger.debug(main_deck.toString());
+        logger.debug(egg_deck.toString());
+        logger.debug("" + count);
+        Deck deck = new Deck (name, main_deck, egg_deck, count);
+        
+        return service.newDeck(deck);
     }
 }

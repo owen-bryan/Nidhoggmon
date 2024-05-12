@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class NidhoggmonApplication {
 
-	private static Logger logger = LoggerFactory.getLogger(NidhoggmonApplication.class);
+	private final static Logger logger = LoggerFactory.getLogger(NidhoggmonApplication.class);
 
 	public static void main(String[] args) {
 		SpringApplication.run(NidhoggmonApplication.class, args);
