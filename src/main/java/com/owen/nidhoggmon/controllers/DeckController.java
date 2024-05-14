@@ -39,19 +39,23 @@ public final class DeckController {
 
     @GetMapping("/deck/{id}")
     @ResponseBody
-    public String getDeck(@PathVariable(value = "id") String id) {
-        logger.info(String.format("Getting ID = %x", id));
-        return "ID: " + id;
+    public Deck getDeck(@PathVariable(value = "id") String id) {
+        logger.info("Getting Deck with ID " + id);
+        return service.findById(id);
     }
 
     @DeleteMapping("/deck/{id}")
-    public void deleteDeck(@PathVariable(value = "id") String id) {
-        logger.info(String.format("Deleting ID = %x", id));
+    public boolean deleteDeck(@PathVariable(value = "id") String id) {
+        logger.info(String.format("Deleting ID = %s", id));
+
+        return service.deleteDeck(id);
     }
 
     @DeleteMapping("/deck/{id}/{cardId}")
     public void deleteCard(@PathVariable(value = "id") String id, @PathVariable(value = "cardId") String cardId) {
-        logger.info(String.format("Removing Card ID = %s from Deck ID = %x", cardId, id));
+        logger.info(String.format("Removing Card ID = %s from Deck ID = %s", cardId, id));
+
+        
     }
 
     @PostMapping({ "/deck", "/deck/" })
