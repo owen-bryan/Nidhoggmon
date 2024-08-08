@@ -2,6 +2,9 @@ package com.owen.nidhoggmon.services;
 
 import java.util.List;
 
+import org.apache.tomcat.util.http.fileupload.impl.IOFileUploadException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +15,7 @@ import com.owen.nidhoggmon.respositories.DeckListRepository;
 @Service
 public class DeckListService {
 
+    private static final Logger logger = LoggerFactory.getLogger(DeckListService.class);
     @Autowired
     private DeckListRepository repository;
 
@@ -23,13 +27,25 @@ public class DeckListService {
 
     }
 
+    public boolean addCard (String id, Card card)
+    {
+        Deck d = repository.findById(id).orElse(null);
+
+        if (d != null)
+            d.getMainDeck().add(card);
+        else
+            return false;
+
+        return true;
+    }
+
     public boolean deleteDeck (String id)
     {
         try {
             repository.deleteById(id);
             
-        } catch (Exception e) {
-            System.out.println(e.toString());
+        } catch (IllegalArgumentException e) {
+            logger.error(e.toString());
             return false;
         }
 
@@ -63,8 +79,13 @@ public class DeckListService {
             if (deck.getMainDeck().get(i).equals(cardId))
             {
                 deck.getMainDeck().get(i).setQty(deck.getMainDeck().get(i).getQty() - qty);
-
+                
                 repository.save(deck);
+
+                if (deck.getMainDeck().get(i).getQty() == 0)
+                {
+                    
+                }
                 
                 return true;
             }
