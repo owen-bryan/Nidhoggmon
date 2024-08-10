@@ -1,104 +1,21 @@
-import Image from "next/image";
-
+import { useEffect } from "react";
 export default function Home() {
+  const [deck, setDeck] = useState({});
+  useEffect (() => {
+    axios.get("http://localhost:8080/deck/0").then(response => {
+      setDeck (deck);
+    }).catch (error => {
+      console.error('object :>> ', error);
+    });
+
+  },[]);
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-24">
       <div className="grid grid-cols-7 gap-4">
-        
-      <li>
-          hello
-        </li>
-        <li>
-          hello
-        </li>
-        <li>
-          hello
-        </li>
-        <li>
-          hello
-        </li>
-        <li>
-          hello
-        </li>
-        <li>
-          hello
-        </li>
-        <li>
-          hello
-        </li>
-        <li>
-          hello
-        </li>
-        <li>
-          hello
-        </li>
-        <li>
-          hello
-        </li>
-        <li>
-          hello
-        </li>
-        <li>
-          hello
-        </li>
-        <li>
-          hello
-        </li>
-        <li>
-          hello
-        </li>
-        <li>
-          hello
-        </li>
-        <li>
-          hello
-        </li>
-        <li>
-          hello
-        </li>
-        <li>
-          hello
-        </li>
-        <li>
-          hello
-        </li>
-        <li>
-          hello
-        </li>
-        <li>
-          hello
-        </li>
-        <li>
-          hello
-        </li>
-        <li>
-          hello
-        </li>
-        <li>
-          hello
-        </li>
-        <li>
-          hello
-        </li>
-        <li>
-          hello
-        </li>
-        <li>
-          hello
-        </li>
-        <li>
-          hello
-        </li>
-        <li>
-          hello
-        </li>
-        <li>
-          hello
-        </li>
-        <li>
-          hello
-        </li>
+        {deck.main_deck.map (card => <div>{card.name} </div>)}
       </div>
     </main>
   );
 }
+
+
