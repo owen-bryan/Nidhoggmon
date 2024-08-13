@@ -7,8 +7,13 @@ export default function Home() {
     }).catch (error => {
       console.error('object :>> ', error);
     });
-
   },[]);
+
+  useEffect (() => {
+    deck.main_deck.foreach(card => {
+      
+    })
+  },[deck]);
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-24">
       <div className="grid grid-cols-7 gap-4">
